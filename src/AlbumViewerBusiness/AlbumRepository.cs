@@ -11,7 +11,7 @@ using Westwind.Utilities;
 
 namespace AlbumViewerBusiness
 {
-    public class AlbumRepository : EntityFrameworkRepository<AlbumViewerContext, Album>
+    public class AlbumRepository : EntityFrameworkRepository<AlbumViewerContext, Album>, IAlbumRepository
     {
         public AlbumRepository(AlbumViewerContext context)
             : base(context)

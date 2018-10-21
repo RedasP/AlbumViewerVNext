@@ -18,7 +18,7 @@ namespace AlbumViewerUnitTest
             var sut = new AccountController(accountRepository);
 
             var exception = Assert.ThrowsAsync<ApiException>(async () =>
-                await sut.Login(new User {Username = "User", Password = "Password"}));
+                await sut.Login(new User { Username = "User", Password = "Password" }));
             Assert.AreEqual(exception.Message, "Invalid Login Credentials");
             Assert.AreEqual(exception.StatusCode, 401);
         }
