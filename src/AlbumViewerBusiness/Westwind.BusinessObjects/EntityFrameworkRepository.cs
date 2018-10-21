@@ -13,7 +13,7 @@ namespace Westwind.BusinessObjects
     /// </summary>
     /// <typeparam name="TContext"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
-    public class EntityFrameworkRepository<TContext, TEntity>
+    public class EntityFrameworkRepository<TContext, TEntity> : IEntityFrameworkRepository<TContext, TEntity>
         where TContext : DbContext
         where TEntity : class, new()
     {

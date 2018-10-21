@@ -26,8 +26,8 @@ namespace AlbumViewerAspNetCore
         AlbumViewerContext context;
         IServiceProvider serviceProvider;
         
-        ArtistRepository ArtistRepo;
-        AlbumRepository AlbumRepo;
+        IArtistRepository ArtistRepo;
+        IAlbumRepository AlbumRepo;
         IConfiguration Configuration;
         private ILogger<AlbumViewerApiController> Logger;
 
@@ -36,8 +36,8 @@ namespace AlbumViewerAspNetCore
         public AlbumViewerApiController(
             AlbumViewerContext ctx, 
             IServiceProvider svcProvider,
-            ArtistRepository artistRepo, 
-            AlbumRepository albumRepo, 
+            IArtistRepository artistRepo, 
+            IAlbumRepository albumRepo, 
             IConfiguration config,
             ILogger<AlbumViewerApiController> logger,
             IHostingEnvironment env)
