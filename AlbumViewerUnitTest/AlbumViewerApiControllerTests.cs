@@ -76,6 +76,8 @@ namespace AlbumViewerUnitTest
             Assert.AreEqual(exception.StatusCode, 401);
         }
 
+
+
         [Test]
         public void SaveAlbumShouldThrowExceptionForInvalidModel()
         {
@@ -228,6 +230,35 @@ namespace AlbumViewerUnitTest
             await _albumRepository.Received(1).DeleteAlbum(1);
             await _albumRepository.DidNotReceive().DeleteAlbum(2);
             await _albumRepository.Received(1).DeleteAlbum(3);
+        }
+
+        [Test]
+        public void DeleteAlbumShouldThrowForInvalidUser()
+        {
+            _sut.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            };
+
+            var exception = Assert.ThrowsAsync<ApiException>(async () => await _sut.DeleteAlbumByName("Name"));
+
+            Assert.AreEqual(exception.StatusCode, 401);
+        }
+
+        [Test]
+        public async Task GetAlbumsShouldCallAlbumRepositoryForAllAlbums()
+        {
+            await _sut.GetAlbums(1);
+
+            await _albumRepository.Received().GetAllAlbums(1);
+        }
+
+        [Test]
+        public async Task GetAlbumShouldLoadAlbumFromAlbumRepository()
+        {
+            await _sut.GetAlbum(1);
+
+            await _albumRepository.Received().Load(1);
         }
     }
 }
